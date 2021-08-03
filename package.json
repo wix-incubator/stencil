@@ -1,6 +1,6 @@
 {
   "name": "stencil-core-hydrate-compiler",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "main": "./internal/stencil-core/index.cjs",
   "module": "./internal/stencil-core/index.js",
@@ -9,8 +9,16 @@
     "stencil": "bin/stencil"
   },
   "files": [
-    "compiler/stencil.js",
-    "compiler/stencil.d.ts"
+    "bin/",
+    "cli/",
+    "compiler/",
+    "dependencies.json",
+    "dev-server/",
+    "internal/",
+    "mock-doc/",
+    "screenshot/",
+    "sys/",
+    "testing/"
   ],
   "scripts": {
     "start": "npm run watch",
