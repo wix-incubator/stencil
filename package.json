@@ -1,5 +1,5 @@
 {
-  "name": "@wix/stencil-core-hydrate-compiler",
+  "name": "stencil-core-hydrate-compiler",
   "version": "1.0.0",
   "license": "MIT",
   "main": "./internal/stencil-core/index.cjs",
@@ -9,7 +9,8 @@
     "stencil": "bin/stencil"
   },
   "files": [
-    "compiler/"
+    "compiler/stencil.js",
+    "compiler/stencil.d.ts"
   ],
   "scripts": {
     "start": "npm run watch",
@@ -118,7 +119,7 @@
   },
   "author": "Ionic Team",
   "homepage": "https://stenciljs.com/",
-  "description": "A Compiler for Web Components and Progressive Web Apps",
+  "description": "WIP: Updated stencil compiler",
   "keywords": [
     "web components",
     "components",
