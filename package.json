@@ -9,16 +9,7 @@
     "stencil": "bin/stencil"
   },
   "files": [
-    "bin/",
-    "cli/",
-    "compiler/",
-    "dependencies.json",
-    "dev-server/",
-    "internal/",
-    "mock-doc/",
-    "screenshot/",
-    "sys/",
-    "testing/"
+    "compiler/"
   ],
   "scripts": {
     "start": "npm run watch",
