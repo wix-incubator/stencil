@@ -7,6 +7,7 @@ import { createLogger } from '../sys/logger/console-logger';
 import { getCurrentDirectory } from '../sys/environment';
 import { isNumber, isString, loadTypeScriptDiagnostics, normalizePath } from '@utils';
 import { lazyComponentTransform } from '../transformers/component-lazy/transform-lazy-component';
+import { hydrateComponentTransform } from '../transformers/component-hydrate/tranform-to-hydrate-component';
 import { nativeComponentTransform } from '../transformers/component-native/tranform-to-native-component';
 import { updateStencilCoreImports } from '../transformers/update-stencil-core-import';
 import ts from 'typescript';
@@ -95,16 +96,23 @@ export const transpileModule = (config: d.Config, input: string, transformOpts: 
   const program = ts.createProgram([sourceFilePath], tsCompilerOptions, compilerHost);
   const typeChecker = program.getTypeChecker();
 
-  const after: ts.TransformerFactory<ts.SourceFile>[] = [convertStaticToMeta(config, compilerCtx, buildCtx, typeChecker, null, transformOpts)];
+  const after: ts.TransformerFactory<ts.SourceFile>[] = [
+    convertStaticToMeta(config, compilerCtx, buildCtx, typeChecker, null, transformOpts),
+  ];
 
   if (transformOpts.componentExport === 'customelement' || transformOpts.componentExport === 'module') {
     after.push(nativeComponentTransform(compilerCtx, transformOpts));
+  } else if (transformOpts.componentExport === 'hydrate') {
+    after.push(hydrateComponentTransform(compilerCtx, transformOpts));
   } else {
     after.push(lazyComponentTransform(compilerCtx, transformOpts));
   }
 
   program.emit(undefined, undefined, undefined, false, {
-    before: [convertDecoratorsToStatic(config, buildCtx.diagnostics, typeChecker), updateStencilCoreImports(transformOpts.coreImportPath)],
+    before: [
+      convertDecoratorsToStatic(config, buildCtx.diagnostics, typeChecker),
+      updateStencilCoreImports(transformOpts.coreImportPath),
+    ],
     after,
   });
 

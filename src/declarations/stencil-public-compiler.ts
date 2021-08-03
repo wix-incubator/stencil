@@ -2280,7 +2280,7 @@ export interface TranspileOptions {
    * A component can be defined as a custom element by using `customelement`, or the
    * component class can be exported by using `module`. Default is `customelement`.
    */
-  componentExport?: 'customelement' | 'module' | string | undefined;
+  componentExport?: 'customelement' | 'hydrate' | 'module' | string | undefined;
   /**
    * Sets how and if component metadata should be assigned on the compiled
    * component output. The `compilerstatic` value will set the metadata to
@@ -2351,6 +2351,8 @@ export interface TranspileOptions {
    * Passed in Stencil Compiler System, otherwise falls back to the internal in-memory only system.
    */
   sys?: CompilerSystem;
+
+  jsxFactory?: string;
 }
 
 export type CompileTarget =
@@ -2378,7 +2380,7 @@ export interface TranspileResults {
 
 export interface TransformOptions {
   coreImportPath: string;
-  componentExport: 'lazy' | 'module' | 'customelement' | null;
+  componentExport: 'lazy' | 'hydrate' | 'module' | 'customelement' | null;
   componentMetadata: 'runtimestatic' | 'compilerstatic' | null;
   currentDirectory: string;
   file?: string;
