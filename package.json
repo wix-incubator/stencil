@@ -1,5 +1,6 @@
 {
-  "name": "@stencil/core",
+  "name": "@wix/stencil-core-hydrate-compiler",
+  "private": true,
   "version": "2.7.0-0",
   "license": "MIT",
   "main": "./internal/stencil-core/index.cjs",
